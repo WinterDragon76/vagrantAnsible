@@ -2,6 +2,8 @@
 
 This code should be run on a Linux machine. I'm using Kali Linux but any Linux machine will suffice.
 
+The hardening tasks will be to add a login screen for authorised users only, update patching and remove unwanted packages.
+
 To run this installation, Install VirtualBox on the Linux machine machine, • Install Ansible on the Linux machine machine, • Install Vagrant on that Linux machine machine.
 
 You will then • Run the VagrantUp for AlmaLinux • Build an Ansible playbook and configure Vagrant to use Ansible provisioning
