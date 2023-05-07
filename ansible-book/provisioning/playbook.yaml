@@ -1,0 +1,37 @@
+---
+#Sourced @ https://www.redhat.com/sysadmin/harden-new-system-ansible
+    
+- hosts: all
+  gather_facts: false
+  become: true
+  vars:
+    #list for software to be removed
+    unnecessary_software:
+      - tcpdump
+      - nmap-ncat
+      - wpa_supplicant
+  
+  tasks:
+    - name: Make sure that we can connect to the machine
+      ping:
+    
+    #Create Authorisation Message
+    - name: Set a login banner
+      copy:
+        dest: /etc/issue
+        src:  issue
+        owner: root
+        group: root
+        mode: 0644
+
+    #Remove undesired software packages
+    - name: Remove undesirable packages
+      package:
+        name: "{{ unnecessary_software }}"
+        state: absent
+
+    #Ensure software is fully patched
+    - name: Perform full patching
+      package:
+        name: '*'
+        state: latest
